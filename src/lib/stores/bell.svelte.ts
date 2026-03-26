@@ -79,6 +79,7 @@ class BellStore {
           .replace('[SubjectFinished]', subjectFinishedStr)
           .replace('[SubjectNext]', bell.subject)
           .replace('[Subject]', bell.subject)
+          .replace('[Class]', bell.class)
           .replace('[TeacherNext]', `${bell.teacherPrefix ? bell.teacherPrefix + ' ' : ''}${bell.teacher}`)
           .replace('[Teacher]', `${bell.teacherPrefix ? bell.teacherPrefix + ' ' : ''}${bell.teacher}`);
 

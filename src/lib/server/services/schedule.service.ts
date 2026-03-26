@@ -9,9 +9,10 @@ export const scheduleSchema = z.object({
 	type: z.enum(['Lesson', 'Change', 'Break', 'Prayer', 'EndSchool', 'StartSchool']).optional().nullable(),
 	day: z.string().min(1, 'Day is required'),
 	subject: z.string().min(1, 'Subject is required'),
+	class: z.string().min(1, 'Class is required'),
 	teacherPrefix: z.string().optional().nullable(),
 	teacher: z.string().min(1, 'Teacher is required'),
-	jamKe: z.number().int().min(1, 'Jam Ke is required'),
+	period: z.number().int().min(1, 'Period is required'),
 	order: z.number().int().min(1, 'Order is required')
 });
 
@@ -55,9 +56,10 @@ export const scheduleService = {
 					type: validated.data.type ?? null,
 					day: validated.data.day,
 					subject: validated.data.subject,
+					class: validated.data.class,
 					teacherPrefix: validated.data.teacherPrefix ?? null,
 					teacher: validated.data.teacher,
-					jamKe: validated.data.jamKe,
+					period: validated.data.period,
 					order: validated.data.order
 				})
 				.returning();

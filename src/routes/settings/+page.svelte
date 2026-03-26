@@ -155,8 +155,9 @@
           teacher: row.Guru || row.teacher || '-',
           teacherPrefix: row.Prefix || row.teacherPrefix || '',
           day: row.Hari || row.day || 'Everyday',
+          class: row.Class || row.class || 'All Classes',
           type: (row.Tipe || row.type || 'Lesson') as ScheduleType,
-          jamKe: parseInt(row.JamKe || row.jamKe || '1', 10),
+          period: parseInt(row.JamKe || row.jamKe || '1', 10),
           order: parseInt(row.Urutan || row.order || '1', 10)
         }));
 
@@ -181,8 +182,9 @@
       Guru: item.teacher,
       Prefix: item.teacherPrefix,
       Hari: item.day,
+      Kelas: item.class,
       Tipe: item.type,
-      JamKe: item.jamKe,
+      Period: item.period,
       Urutan: item.order
     })));
 
@@ -517,9 +519,9 @@
               id="announcement-tpl"
               bind:value={settingsStore.value.announcementTemplate}
               class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all min-h-[100px]"
-              placeholder="Use [SubjectFinished], [Subject], [Teacher]"
+              placeholder="Use [SubjectFinished], [Subject], [Kelas], [Teacher]"
             ></textarea>
-            <p class="text-[10px] text-gray-400 italic">Available: [SubjectFinished], [Subject], [Teacher]</p>
+            <p class="text-[10px] text-gray-400 italic">Available: [SubjectFinished], [Subject], [Kelas], [Teacher]</p>
           </div>
 
           <div class="space-y-2">

@@ -6,9 +6,10 @@ export interface ScheduleItem {
   type?: ScheduleType | null;
   day: string; // Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Everyday
   subject: string;
+  class: string;
   teacherPrefix?: string | null;
   teacher: string;
-  jamKe: number;
+  period: number;
   order: number;
 }
 

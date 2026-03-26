@@ -82,6 +82,7 @@
       .replace('[SubjectFinished]', '... (Otomatis dari jam sebelumnya)')
       .replace('[SubjectNext]', editingItem.subject || '...')
       .replace('[Subject]', editingItem.subject || '...')
+      .replace('[Class]', editingItem.class || '...')
       .replace('[TeacherNext]', `${editingItem.teacherPrefix ? editingItem.teacherPrefix + ' ' : ''}${editingItem.teacher || '...'}`)
       .replace('[Teacher]', `${editingItem.teacherPrefix ? editingItem.teacherPrefix + ' ' : ''}${editingItem.teacher || '...'}`);
   });
@@ -221,6 +222,17 @@
                     class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
                   />
                 </div>
+                <div class="group">
+                  <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-class">Kelas</label>
+                  <input 
+                    id="edit-class"
+                    type="text" 
+                    required
+                    bind:value={editingItem.class}
+                    placeholder="Contoh: 10 A"
+                    class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
+                  />
+                </div>
                 <div class="group flex gap-2">
                   <div class="w-1/2">
                     <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-jam">Jam Ke</label>
@@ -229,7 +241,7 @@
                       type="number" 
                       required
                       min="1"
-                      bind:value={editingItem.jamKe}
+                      bind:value={editingItem.period}
                       class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
                     />
                   </div>

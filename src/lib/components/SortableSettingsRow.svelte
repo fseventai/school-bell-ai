@@ -74,9 +74,9 @@
 
   <!-- Subject & Teacher -->
   <div class="flex-1 min-w-0">
-    <p class="text-sm font-bold text-gray-700 truncate">{item.subject}</p>
+    <p class="text-sm font-bold text-gray-700 truncate">{item.subject} <span class="bg-gray-100 text-gray-500 rounded px-1.5 py-0.5 ml-1 text-[10px] uppercase font-bold tracking-widest">{item.class}</span></p>
     <p class="text-[10px] text-gray-400 truncate">
-      {item.teacherPrefix ? `${item.teacherPrefix} ` : ''}{item.teacher} | Jam {item.jamKe}
+      {item.teacherPrefix ? `${item.teacherPrefix} ` : ''}{item.teacher} | Jam {item.period}
     </p>
   </div>
 

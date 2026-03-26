@@ -17,9 +17,10 @@ export const schedule = sqliteTable('schedule', {
 	type: text('type').$type<ScheduleType>(),
 	day: text('day').notNull(),
 	subject: text('subject').notNull(),
+	class: text('class').notNull(),
 	teacherPrefix: text('teacher_prefix'),
 	teacher: text('teacher').notNull(),
-	jamKe: integer('jam_ke').notNull(),
+	period: integer('period').notNull(),
 	order: integer('order').notNull()
 });
 
