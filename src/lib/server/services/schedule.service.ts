@@ -6,8 +6,8 @@ import { z } from 'zod';
 // Input Validation via Zod
 export const scheduleSchema = z.object({
 	time: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
-	timestart: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
-	timeend: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
+	startTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
+	finishTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
 	type: z.enum(['Lesson', 'Change', 'Break', 'Prayer', 'EndSchool', 'StartSchool']).optional().nullable(),
 	day: z.string().min(1, 'Day is required'),
 	subject: z.string().min(1, 'Subject is required'),
@@ -55,8 +55,8 @@ export const scheduleService = {
 				.insert(schedule)
 				.values({
 					time: validated.data.time,
-					timestart: validated.data.timestart,
-					timeend: validated.data.timeend,
+					startTime: validated.data.startTime,
+					finishTime: validated.data.finishTime,
 					type: validated.data.type ?? null,
 					day: validated.data.day,
 					subject: validated.data.subject,

@@ -38,19 +38,19 @@
   const filteredSchedule = $derived(
     scheduleStore.items
       .filter(item => item.day === 'Everyday' || item.day === displayDayEn)
-      .sort((a, b) => a.time.localeCompare(b.time))
+      .sort((a, b) => a.time!.localeCompare(b.time!))
   );
 
   const activeLesson = $derived(
     filteredSchedule.find((item, idx) => 
-      isActive(item.time, filteredSchedule[idx + 1]?.time || null)
+      isActive(item.time!, filteredSchedule[idx + 1]?.time || null)
     )
   );
   
   const nextLesson = $derived(
     filteredSchedule.find(item => {
       const isCurrentDay = selectedDay === 'Today' || selectedDay === todayId;
-      return isCurrentDay && item.time > nowStr;
+      return isCurrentDay && item.time! > nowStr;
     })
   );
 

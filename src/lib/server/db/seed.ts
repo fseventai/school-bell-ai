@@ -6,8 +6,8 @@ import type { ScheduleType } from '$lib/types';
 const DEFAULT_SCHEDULE: Array<{
   id: string;
   time?: string | null;
-  timestart?: string | null;
-  timeend?: string | null;
+  startTime?: string | null;
+  finishTime?: string | null;
   day: string;
   subject: string;
   class: string;
