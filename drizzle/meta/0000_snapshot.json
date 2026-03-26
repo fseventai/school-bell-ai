@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "9e4d2be8-4a26-45a2-84b9-0aa39ec1c62c",
+  "id": "691f296b-18f1-451d-a6ef-acb27a57f64d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "schedule": {
@@ -21,15 +21,29 @@
           "notNull": true,
           "autoincrement": false
         },
-        "subject_finished": {
-          "name": "subject_finished",
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "day": {
+          "name": "day",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "subject_next": {
-          "name": "subject_next",
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "class": {
+          "name": "class",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -42,25 +56,25 @@
           "notNull": false,
           "autoincrement": false
         },
-        "teacher_next": {
-          "name": "teacher_next",
+        "teacher": {
+          "name": "teacher",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "day": {
-          "name": "day",
-          "type": "text",
+        "period": {
+          "name": "period",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "type": {
-          "name": "type",
-          "type": "text",
+        "order": {
+          "name": "order",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         }
       },

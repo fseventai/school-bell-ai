@@ -16,7 +16,8 @@
     Timer,
     Square,
     CheckSquare,
-    Plus
+    Plus,
+    Download
   } from '@lucide/svelte';
   import { dndzone, type DndEvent } from 'svelte-dnd-action';
   import { flip } from 'svelte/animate';
@@ -36,6 +37,8 @@
   import SortableSettingsRow from '$lib/components/SortableSettingsRow.svelte';
   import SettingsSidebar from '$lib/components/SettingsSidebar.svelte';
   import type { ScheduleItem, VoiceName, ScheduleType } from '$lib/types';
+	import { resolve } from '$app/paths';
+
 
   // Local state
   let activeSection = $state('schedule');
@@ -256,25 +259,46 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-3">
-          <button 
-            onclick={() => fileInput?.click()}
-            class="flex-1 min-w-[140px] bg-blue-500 hover:bg-blue-600 text-white px-6 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-100 active:scale-95"
-          >
-            <Plus size={18} /> Tambah Jadwal
-          </button>
-          <button 
-            onclick={() => importOverwriteInput?.click()}
-            class="flex-1 min-w-[140px] bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-100 active:scale-95"
-          >
-            <Upload size={18} /> Timpa Jadwal
-          </button>
-          <button 
-            onclick={handleExportSchedule}
-            class="flex-1 min-w-[140px] bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-100 active:scale-95"
-          >
-            <FileAudio size={18} /> Ekspor CSV
-          </button>
+        <div class="flex flex-col gap-4">
+          <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100 flex items-start gap-4">
+            <div class="mt-0.5 text-blue-500 bg-white p-2 rounded-xl border border-blue-100 shadow-sm">
+              <Download size={20} />
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-blue-900 mb-1">Panduan Import Jadwal</p>
+              <p class="text-xs text-blue-700 leading-relaxed mb-4">
+                Silakan download template <strong>Excel (.xlsx)</strong> berikut. Setelah data Excel diisi dan disesuaikan, <strong>Anda wajib menyimpannya menggunakan menu (Save As) ke format CSV (Comma delimited)</strong> sebelum melakukan proses import ke sistem. Sistem hanya menerima file berekstensi .csv.
+              </p>
+              <a  
+                href={resolve('/template-jadwal.xlsx')}
+                download
+                class="inline-flex bg-white hover:bg-blue-50 text-blue-600 px-5 py-2.5 rounded-xl text-xs font-bold items-center gap-2 transition-all border border-blue-200 shadow-sm active:scale-95"
+              >
+                <Download size={16} /> Download Template XLSX
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <button 
+              onclick={() => fileInput?.click()}
+              class="flex-1 min-w-[140px] bg-blue-500 hover:bg-blue-600 text-white px-6 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-100 active:scale-95"
+            >
+              <Plus size={18} /> Tambah Jadwal CSV
+            </button>
+            <button 
+              onclick={() => importOverwriteInput?.click()}
+              class="flex-1 min-w-[140px] bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-100 active:scale-95"
+            >
+              <Upload size={18} /> Timpa Jadwal CSV
+            </button>
+            <button 
+              onclick={handleExportSchedule}
+              class="flex-1 min-w-[140px] bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-100 active:scale-95"
+            >
+              <FileAudio size={18} /> Ekspor CSV
+            </button>
+          </div>
         </div>
 
         <input bind:this={fileInput} type="file" accept=".csv" onchange={e => handleFileUpload(e, true)} class="hidden" />

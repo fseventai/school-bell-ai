@@ -1,12 +1,14 @@
 CREATE TABLE `schedule` (
 	`id` text PRIMARY KEY NOT NULL,
 	`time` text NOT NULL,
-	`subject_finished` text NOT NULL,
-	`subject_next` text NOT NULL,
-	`teacher_prefix` text,
-	`teacher_next` text NOT NULL,
+	`type` text,
 	`day` text NOT NULL,
-	`type` text
+	`subject` text NOT NULL,
+	`class` text NOT NULL,
+	`teacher_prefix` text,
+	`teacher` text NOT NULL,
+	`period` integer NOT NULL,
+	`order` integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `task` (
