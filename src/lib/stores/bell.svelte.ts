@@ -75,7 +75,7 @@ class BellStore {
         const subjectFinishedStr = prevBell ? prevBell.subject : 'Pelajaran sebelumnya';
 
         const announcementText = template
-          .replace('[Time]', bell.time)
+          .replace('[Time]', bell.time ?? '')
           .replace('[SubjectFinished]', subjectFinishedStr)
           .replace('[SubjectNext]', bell.subject)
           .replace('[Subject]', bell.subject)

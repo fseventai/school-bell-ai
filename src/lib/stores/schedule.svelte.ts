@@ -54,7 +54,7 @@ function createScheduleStore() {
       if (browser) localStorage.setItem('bell-schedule', JSON.stringify(items));
     },
     sortByTime() {
-      items = [...items].sort((a, b) => a.time.localeCompare(b.time));
+      items = [...items].sort((a, b) => a.time!.localeCompare(b.time!));
       if (browser) localStorage.setItem('bell-schedule', JSON.stringify(items));
     },
     addItems(newItems: ScheduleItem[]) {

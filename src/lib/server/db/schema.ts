@@ -13,7 +13,9 @@ export const schedule = sqliteTable('schedule', {
 	id: text('id')
 		.primaryKey()
 		.$defaultFn(() => crypto.randomUUID()),
-	time: text('time').notNull(),
+	time: text('time'),
+	timestart: text('timestart'),
+	timeend: text('timeend'),
 	type: text('type').$type<ScheduleType>(),
 	day: text('day').notNull(),
 	subject: text('subject').notNull(),

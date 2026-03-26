@@ -2,8 +2,10 @@ export type ScheduleType = 'Lesson' | 'Change' | 'Break' | 'Prayer' | 'EndSchool
 
 export interface ScheduleItem {
   id: string;
-  time: string; // HH:mm
-  type?: ScheduleType | null;
+  time?: string | null; //  HH:mm
+  timestart?: string | null;
+  timeend?: string | null;
+  type: ScheduleType;
   day: string; // Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Everyday
   subject: string;
   class: string;
