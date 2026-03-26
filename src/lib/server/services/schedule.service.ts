@@ -6,12 +6,13 @@ import { z } from 'zod';
 // Input Validation via Zod
 export const scheduleSchema = z.object({
 	time: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
+	type: z.enum(['Lesson', 'Change', 'Break', 'Prayer', 'EndSchool', 'StartSchool']).optional().nullable(),
 	day: z.string().min(1, 'Day is required'),
-	subjectFinished: z.string().min(1, 'Finished subject is required'),
-	subjectNext: z.string().min(1, 'Next subject is required'),
+	subject: z.string().min(1, 'Subject is required'),
 	teacherPrefix: z.string().optional().nullable(),
-	teacherNext: z.string().min(1, 'Next teacher is required'),
-	type: z.enum(['Lesson', 'Change', 'Break', 'Prayer', 'EndSchool', 'StartSchool']).optional().nullable()
+	teacher: z.string().min(1, 'Teacher is required'),
+	jamKe: z.number().int().min(1, 'Jam Ke is required'),
+	order: z.number().int().min(1, 'Order is required')
 });
 
 export type InsertSchedule = z.infer<typeof scheduleSchema>;
@@ -51,12 +52,13 @@ export const scheduleService = {
 				.insert(schedule)
 				.values({
 					time: validated.data.time,
+					type: validated.data.type ?? null,
 					day: validated.data.day,
-					subjectFinished: validated.data.subjectFinished,
-					subjectNext: validated.data.subjectNext,
+					subject: validated.data.subject,
 					teacherPrefix: validated.data.teacherPrefix ?? null,
-					teacherNext: validated.data.teacherNext,
-					type: validated.data.type ?? null
+					teacher: validated.data.teacher,
+					jamKe: validated.data.jamKe,
+					order: validated.data.order
 				})
 				.returning();
 			return result[0];

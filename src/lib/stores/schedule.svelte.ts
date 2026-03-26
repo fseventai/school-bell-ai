@@ -2,15 +2,15 @@ import { browser } from '$app/environment';
 import type { ScheduleItem } from '$lib/types';
 
 const DEFAULT_SCHEDULE: ScheduleItem[] = [
-  { id: "1", time: "07:00", day: "Everyday", subjectFinished: "Persiapan", subjectNext: "Upacara Bendera", teacherPrefix: "Bapak", teacherNext: "Kepala Sekolah", type: 'StartSchool' },
-  { id: "2", time: "07:45", day: "Everyday", subjectFinished: "Upacara Bendera", subjectNext: "Matematika", teacherPrefix: "Bapak", teacherNext: "Drs. Budi Santoso", type: 'Lesson' },
-  { id: "3", time: "09:15", day: "Everyday", subjectFinished: "Matematika", subjectNext: "Bahasa Inggris", teacherPrefix: "Ibu", teacherNext: "Siti Aminah, M.Pd", type: 'Change' },
-  { id: "4", time: "10:15", day: "Everyday", subjectFinished: "Bahasa Inggris", subjectNext: "Istirahat I", teacherPrefix: "", teacherNext: "-", type: 'Break' },
-  { id: "5", time: "10:30", day: "Everyday", subjectFinished: "Istirahat I", subjectNext: "Fisika", teacherPrefix: "Bapak", teacherNext: "Ir. Agus Wijaya", type: 'Lesson' },
-  { id: "6", time: "12:00", day: "Everyday", subjectFinished: "Fisika", subjectNext: "Istirahat II / Dzuhur", teacherPrefix: "", teacherNext: "-", type: 'Prayer' },
-  { id: "7", time: "13:00", day: "Everyday", subjectFinished: "Istirahat II / Dzuhur", subjectNext: "Bahasa Indonesia", teacherPrefix: "Ibu", teacherNext: "Dra. Ani Lestari", type: 'Lesson' },
-  { id: "8", time: "14:30", day: "Everyday", subjectFinished: "Bahasa Indonesia", subjectNext: "Seni Budaya", teacherPrefix: "Bapak", teacherNext: "Rendi Pratama, S.Sn", type: 'Change' },
-  { id: "9", time: "15:30", day: "Everyday", subjectFinished: "Seni Budaya", subjectNext: "Pulang", teacherPrefix: "", teacherNext: "-", type: 'EndSchool' }
+  { id: "1", time: "07:00", day: "Everyday", subject: "Upacara Bendera", teacherPrefix: "Bapak", teacher: "Kepala Sekolah", type: 'StartSchool', jamKe: 1, order: 1 },
+  { id: "2", time: "07:45", day: "Everyday", subject: "Matematika", teacherPrefix: "Bapak", teacher: "Drs. Budi Santoso", type: 'Lesson', jamKe: 2, order: 2 },
+  { id: "3", time: "09:15", day: "Everyday", subject: "Bahasa Inggris", teacherPrefix: "Ibu", teacher: "Siti Aminah, M.Pd", type: 'Change', jamKe: 3, order: 3 },
+  { id: "4", time: "10:15", day: "Everyday", subject: "Istirahat I", teacherPrefix: "", teacher: "-", type: 'Break', jamKe: 3, order: 4 },
+  { id: "5", time: "10:30", day: "Everyday", subject: "Fisika", teacherPrefix: "Bapak", teacher: "Ir. Agus Wijaya", type: 'Lesson', jamKe: 4, order: 5 },
+  { id: "6", time: "12:00", day: "Everyday", subject: "Istirahat II / Dzuhur", teacherPrefix: "", teacher: "-", type: 'Prayer', jamKe: 5, order: 6 },
+  { id: "7", time: "13:00", day: "Everyday", subject: "Bahasa Indonesia", teacherPrefix: "Ibu", teacher: "Dra. Ani Lestari", type: 'Lesson', jamKe: 6, order: 7 },
+  { id: "8", time: "14:30", day: "Everyday", subject: "Seni Budaya", teacherPrefix: "Bapak", teacher: "Rendi Pratama, S.Sn", type: 'Change', jamKe: 7, order: 8 },
+  { id: "9", time: "15:30", day: "Everyday", subject: "Pulang", teacherPrefix: "", teacher: "-", type: 'EndSchool', jamKe: 8, order: 9 }
 ];
 
 function createScheduleStore() {
@@ -80,11 +80,12 @@ function createScheduleStore() {
           id: Math.random().toString(36).substr(2, 9),
           time: timeStr,
           day: 'Everyday',
-          subjectFinished: i === 0 ? "Persiapan" : subjects[(i - 1) % subjects.length],
-          subjectNext: subjects[i % subjects.length],
+          subject: subjects[i % subjects.length],
           teacherPrefix: prefixes[Math.floor(Math.random() * prefixes.length)],
-          teacherNext: teachers[Math.floor(Math.random() * teachers.length)],
-          type: 'Lesson'
+          teacher: teachers[Math.floor(Math.random() * teachers.length)],
+          type: 'Lesson',
+          jamKe: i + 1,
+          order: i + 1
         });
 
         currentMin += 45;

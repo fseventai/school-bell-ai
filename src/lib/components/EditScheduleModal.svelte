@@ -79,9 +79,11 @@
 
     return template
       .replace('[Time]', editingItem.time || '--:--')
-      .replace('[SubjectFinished]', editingItem.subjectFinished || '...')
-      .replace('[SubjectNext]', editingItem.subjectNext || '...')
-      .replace('[TeacherNext]', `${editingItem.teacherPrefix ? editingItem.teacherPrefix + ' ' : ''}${editingItem.teacherNext || '...'}`);
+      .replace('[SubjectFinished]', '... (Otomatis dari jam sebelumnya)')
+      .replace('[SubjectNext]', editingItem.subject || '...')
+      .replace('[Subject]', editingItem.subject || '...')
+      .replace('[TeacherNext]', `${editingItem.teacherPrefix ? editingItem.teacherPrefix + ' ' : ''}${editingItem.teacher || '...'}`)
+      .replace('[Teacher]', `${editingItem.teacherPrefix ? editingItem.teacherPrefix + ' ' : ''}${editingItem.teacher || '...'}`);
   });
 </script>
 
@@ -209,26 +211,39 @@
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="group">
-                  <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-finished">Pelajaran Berakhir</label>
+                  <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-subject">Mata Pelajaran</label>
                   <input 
-                    id="edit-finished"
+                    id="edit-subject"
                     type="text" 
                     required
-                    bind:value={editingItem.subjectFinished}
+                    bind:value={editingItem.subject}
                     placeholder="Contoh: Matematika"
                     class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
                   />
                 </div>
-                <div class="group">
-                  <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-next">Pelajaran Berikutnya</label>
-                  <input 
-                    id="edit-next"
-                    type="text" 
-                    required
-                    bind:value={editingItem.subjectNext}
-                    placeholder="Contoh: Bahasa Inggris"
-                    class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
-                  />
+                <div class="group flex gap-2">
+                  <div class="w-1/2">
+                    <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-jam">Jam Ke</label>
+                    <input 
+                      id="edit-jam"
+                      type="number" 
+                      required
+                      min="1"
+                      bind:value={editingItem.jamKe}
+                      class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
+                    />
+                  </div>
+                  <div class="w-1/2">
+                    <label class="block text-xs font-bold text-gray-500 mb-2 ml-1" for="edit-order">Order</label>
+                    <input 
+                      id="edit-order"
+                      type="number" 
+                      required
+                      min="1"
+                      bind:value={editingItem.order}
+                      class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl px-5 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
+                    />
+                  </div>
                 </div>
               </div>
               
@@ -254,7 +269,7 @@
                       id="edit-teacher"
                       type="text" 
                       required
-                      bind:value={editingItem.teacherNext}
+                      bind:value={editingItem.teacher}
                       class="w-full bg-gray-50 border border-gray-200 group-hover:border-gray-300 rounded-2xl pl-12 pr-4 py-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-display"
                       placeholder="Nama Lengkap Guru"
                     />

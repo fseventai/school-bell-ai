@@ -151,12 +151,13 @@
         const newItems: ScheduleItem[] = (results.data as Record<string, string>[]).map((row) => ({
           id: Math.random().toString(36).substr(2, 9),
           time: row.Waktu || row.time || '07:00',
-          subjectFinished: row.Selesai || row.subjectFinished || '-',
-          subjectNext: row.Lanjut || row.subjectNext || '-',
-          teacherNext: row.Guru || row.teacherNext || '-',
+          subject: row.Pelajaran || row.subject || '-',
+          teacher: row.Guru || row.teacher || '-',
           teacherPrefix: row.Prefix || row.teacherPrefix || '',
           day: row.Hari || row.day || 'Everyday',
-          type: (row.Tipe || row.type || 'Lesson') as ScheduleType
+          type: (row.Tipe || row.type || 'Lesson') as ScheduleType,
+          jamKe: parseInt(row.JamKe || row.jamKe || '1', 10),
+          order: parseInt(row.Urutan || row.order || '1', 10)
         }));
 
         if (append) {
@@ -176,12 +177,13 @@
   function handleExportSchedule() {
     const csv = Papa.unparse(scheduleStore.items.map(item => ({
       Waktu: item.time,
-      Selesai: item.subjectFinished,
-      Lanjut: item.subjectNext,
-      Guru: item.teacherNext,
+      Pelajaran: item.subject,
+      Guru: item.teacher,
       Prefix: item.teacherPrefix,
       Hari: item.day,
-      Tipe: item.type
+      Tipe: item.type,
+      JamKe: item.jamKe,
+      Urutan: item.order
     })));
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -515,9 +517,9 @@
               id="announcement-tpl"
               bind:value={settingsStore.value.announcementTemplate}
               class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all min-h-[100px]"
-              placeholder={"Use {subjectFinished}, {subjectNext}, {teacherNext}"}
+              placeholder="Use [SubjectFinished], [Subject], [Teacher]"
             ></textarea>
-            <p class="text-[10px] text-gray-400 italic">Available: {"{subjectFinished}, {subjectNext}, {teacherNext}"}</p>
+            <p class="text-[10px] text-gray-400 italic">Available: [SubjectFinished], [Subject], [Teacher]</p>
           </div>
 
           <div class="space-y-2">

@@ -46,7 +46,7 @@ class BellStore {
 
     if (upcoming && this.lastNotificationShown !== `${upcoming.id}-${fiveMinLaterStr}`) {
       this.lastNotificationShown = `${upcoming.id}-${fiveMinLaterStr}`;
-      toast(`Bell Berikutnya: ${upcoming.subjectNext}\nPelajaran ${upcoming.subjectNext} akan dimulai pukul ${upcoming.time} (5 menit lagi).`, {
+      toast(`Bell Berikutnya: ${upcoming.subject}\nPelajaran ${upcoming.subject} akan dimulai pukul ${upcoming.time} (5 menit lagi).`, {
         duration: 10000,
       });
     }
@@ -70,11 +70,17 @@ class BellStore {
         else if (bell.type === 'EndSchool') template = settings.endSchoolTemplate;
         else if (bell.type === 'Lesson') template = settings.startLessonTemplate;
 
+        // Calculate subjectFinished based on previous order
+        const prevBell = scheduleStore.items.find(item => item.order === bell.order - 1 && (item.day === bell.day || item.day === 'Everyday'));
+        const subjectFinishedStr = prevBell ? prevBell.subject : 'Pelajaran sebelumnya';
+
         const announcementText = template
           .replace('[Time]', bell.time)
-          .replace('[SubjectFinished]', bell.subjectFinished)
-          .replace('[SubjectNext]', bell.subjectNext)
-          .replace('[TeacherNext]', `${bell.teacherPrefix ? bell.teacherPrefix + ' ' : ''}${bell.teacherNext}`);
+          .replace('[SubjectFinished]', subjectFinishedStr)
+          .replace('[SubjectNext]', bell.subject)
+          .replace('[Subject]', bell.subject)
+          .replace('[TeacherNext]', `${bell.teacherPrefix ? bell.teacherPrefix + ' ' : ''}${bell.teacher}`)
+          .replace('[Teacher]', `${bell.teacherPrefix ? bell.teacherPrefix + ' ' : ''}${bell.teacher}`);
 
         await geminiService.generateAndPlay(announcementText, settings);
       }

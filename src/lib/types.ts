@@ -3,12 +3,13 @@ export type ScheduleType = 'Lesson' | 'Change' | 'Break' | 'Prayer' | 'EndSchool
 export interface ScheduleItem {
   id: string;
   time: string; // HH:mm
-  subjectFinished: string;
-  subjectNext: string;
-  teacherPrefix?: string | null;
-  teacherNext: string;
-  day: string; // Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Everyday
   type?: ScheduleType | null;
+  day: string; // Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Everyday
+  subject: string;
+  teacherPrefix?: string | null;
+  teacher: string;
+  jamKe: number;
+  order: number;
 }
 
 export type VoiceName = 'Puck' | 'Charon' | 'Kore' | 'Fenrir' | 'Zephyr';

@@ -14,12 +14,13 @@ export const schedule = sqliteTable('schedule', {
 		.primaryKey()
 		.$defaultFn(() => crypto.randomUUID()),
 	time: text('time').notNull(),
-	subjectFinished: text('subject_finished').notNull(),
-	subjectNext: text('subject_next').notNull(),
-	teacherPrefix: text('teacher_prefix'),
-	teacherNext: text('teacher_next').notNull(),
+	type: text('type').$type<ScheduleType>(),
 	day: text('day').notNull(),
-	type: text('type').$type<ScheduleType>()
+	subject: text('subject').notNull(),
+	teacherPrefix: text('teacher_prefix'),
+	teacher: text('teacher').notNull(),
+	jamKe: integer('jam_ke').notNull(),
+	order: integer('order').notNull()
 });
 
 export * from './auth.schema';
