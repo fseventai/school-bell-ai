@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "skills": {
+    "better-auth-best-practices": {
+      "source": "better-auth/skills",
+      "sourceType": "github",
+      "computedHash": "9ab075b5061be2a5f299c10505667345cc1ec76e8de4120901cfd586643e776f"
+    },
+    "better-auth-security-best-practices": {
+      "source": "better-auth/skills",
+      "sourceType": "github",
+      "computedHash": "ed38caef4b297cc399d717258d6ea4e6ecb8894c453c83450064c7e7c6e5cc02"
+    },
+    "drizzle-orm": {
+      "source": "bobmatnyc/claude-mpm-skills",
+      "sourceType": "github",
+      "computedHash": "c5132317134698624d023cbbbb612b99d2b20f532f6d1417639607cf401f03cd"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "scalability-playbook": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "computedHash": "03d5a8c44ebcc1de3273e75e951740ac9ddac122e2c3abededa7af58979f492a"
+    },
+    "security-best-practices": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "0c42fff660b6f7e85add36437edc36976466bb254b7cd9eb38ec67b2ad64a9bf"
+    },
+    "security-review": {
+      "source": "getsentry/skills",
+      "sourceType": "github",
+      "computedHash": "453c810edf070323a8a5ef2b551813d5c9fb98b2f56a54446e184e1fd3f39978"
+    },
+    "sveltekit-best-practices": {
+      "source": "ofershap/sveltekit-best-practices",
+      "sourceType": "github",
+      "computedHash": "b8c4e6b537d90e4d184690da793a7646e162add92211a0434482f01f5d663c7f"
+    },
+    "vitest": {
+      "source": "onmax/nuxt-skills",
+      "sourceType": "github",
+      "computedHash": "4180d5256b0da05f5d39f15bc9a0850d67fe87e8bf7d7bd6ff28f0fb795dce5c"
+    }
+  }
+}
